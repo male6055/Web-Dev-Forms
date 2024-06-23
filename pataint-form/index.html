@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #form1 {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        #form {
+            width: 500px;
+            padding: 20px;
+            color: white;
+            background-color: black;
+            background-size: cover;
+            border-radius: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: calc(100% - 20px);
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            text-align: center;
+        }
+
+        .btn5 {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .result-container {
+            width: 100%;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        .result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: black;
+        }
+
+        #display {
+            width: 500px;
+            padding: 20px;
+            background: url(./graham-ruttan-ScXGSS5a9BI-unsplash.jpg);
+            background-size: cover;
+            border-radius: 15px;
+            overflow-y: scroll;
+            max-height: 700px;
+        }
+
+        #lable {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        #logo1 {
+            width: 100px;
+            height: auto;
+        }
+
+        textarea {
+            font-size: 16px;
+            font-family: 'Times New Roman', Times, serif;
+            padding-left: 10px;
+            width: calc(100% - 20px);
+            height: 148px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #logo3 {
+            width: 120px;
+            height: auto;
+        }
+
+        #logo2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #lable2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        label {
+            color: white;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form1">
+        <div id="form">
+            <div id="logo"><img src="./kisspng-ambulance-computer-icons-star-of-life-clip-art-ambulance-pictures-5aaa960c778704.0099935115211289724896.png" alt="" id="logo1"></div>
+            <div id="lable">
+                <div>
+                    <label for="fn">Firstname</label>
+                    <input type="text" name="fn" id="fn" class="fn" placeholder="Enter your First Name">
+                </div>
+                <div>
+                    <label for="ln">Lastname</label>
+                    <input type="text" name="ln" id="ln" class="ln" placeholder="Enter your last Name">
+                </div>
+                <div>
+                    <label for="em">E-mail</label>
+                    <input type="text" name="em" id="em" class="em" placeholder="Enter your E-mail">
+                </div>
+                <div>
+                    <label for="pn">Phone No.</label>
+                    <input type="text" name="pn" id="pn" class="pn" placeholder="Enter your Phone No.">
+                </div>
+                <label for="gender">Gender</label>
+                <div id="lable2">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="gender" id="male" value="Male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="gender" id="female" value="Female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="date">Date OF Appointment</label>
+                    <input type="date" name="date" id="date" class="date">
+                </div>
+                <div>
+                    <label for="textarea">Your History</label>
+                    <textarea id="textarea" placeholder="Enter your text here"></textarea>
+                </div>
+                <div id="btns" class="btn-group">
+                    <button id="btn5" class="btn5">Submit</button>
+                    <button id="btn4" class="btn5">Clear Input field</button>
+                </div>
+            </div>
+        </div>
+        <div id="display">
+            <div id="logo2"><img src="./2210.png" alt="" id="logo3"></div>
+            <div id="result-container-wrapper"></div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#btn5').click(function () {
+                var firstName = $('#fn').val();
+                var lastName = $('#ln').val();
+                var email = $('#em').val();
+                var phoneNo = $('#pn').val();
+                var appointmentDate = $('#date').val();
+                var textareaValue = $('#textarea').val();
+                var gender = $("input[name='gender']:checked").val();
+
+                var resultContainer = $('<div class="result-container"></div>');
+
+                var resultMessage =
+                    '<div class="result">' +
+                    '<p>First Name: ' + firstName + '</p>' +
+                    '<p>Last Name: ' + lastName + '</p>' +
+                    '<p>Email: ' + email + '</p>' +
+                    '<p>Phone No.: ' + phoneNo + '</p>' +
+                    '<p>Gender: ' + gender + '</p>' +
+                    '<p>Appointment Date: ' + appointmentDate + '</p>' +
+                    '<p>Your History: ' + textareaValue + '</p>' +
+                    '</div>';
+
+                resultContainer.append(resultMessage);
+
+                $('#result-container-wrapper').append(resultContainer);
+
+                // Clear fields after submission
+                $("#fn").val('');
+                $("#ln").val('');
+                $("#em").val('');
+                $("#pn").val('');
+                $("#date").val('');
+                $("input[name='gender']").prop('checked', false);
+                $("#textarea").val('');
+            });
+
+            $('#btn4').click(function () {
+                $("#fn").val('');
+                $("#ln").val('');
+                $("#em").val('');
+                $("#pn").val('');
+                $("#date").val('');
+                $("input[name='gender']").prop('checked', false);
+                $("#textarea").val('');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

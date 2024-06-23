@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Events</title>
+    <script src="./jquery.js"></script>
+</head>
+<style>
+    *{
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+    }
+    body{
+        width: 1280px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        background-color: rgb(90, 204, 90);
+        background: url(./acr2.jpg);
+    }
+    #form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: -500px;
+        border: 2px solid #8c1616;
+        padding: 20px;
+    }
+    label{
+        font-size: 20px;
+        font-weight: 600;
+        font-family: sans-serif;
+    }
+    .input{
+        font-size: 16px;
+        width: 400px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background-color: lightblue;
+        padding-left: 10px;
+        
+    }
+    #country{ 
+        height: 40px;
+        background-color: lightblue;
+    }
+    button {
+        width: 200px;
+        height: 40px;
+        align-self: flex-end;
+        margin-top: 10px;
+        border-radius: 10px;
+        background-color: lightblue;   
+    }
+    #btn{
+        font-size: 16px;
+        text-decoration: none;
+        color: black;  
+    }
+    #gender1{
+        color: rgb(31, 31, 31);
+        transition: 0.3s;
+    }
+    #gender2{
+        color: rgb(31, 31, 31);
+        transition: 0.3s;
+    }
+</style>
+<body>
+<div id="form">
+    <h1 style="text-align: center;">Form Events</h1>
+
+    <label for="fname">Enter Your Frist Name :</label>
+    <input type="text" id="fname" class="input">
+
+    <label for="lname">Enter Your last Name :</label>
+    <input type="text" id="lname" class="input">
+
+    <label for="email">Enter Your E-mail</label>
+    <input type="text" id="email" class="input">
+
+    <label for="ht">Enter Your Home Town</label>
+    <input type="text" id="ht" class="input">
+
+<br>
+    <select name="" id="country">
+        <option value="">Chose Your Country</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="India">India</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="UAE">UAE</option>
+        <option value="China">China</option>
+    </select>
+<br>
+    <div>
+        <h2>Chose your Gender</h2><br>
+    <label for="" id="gender1">Male</label>
+    <input type="radio" name="gender" id="male" value="gender" >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    <label for="" id="gender2">Female</label>
+    <input type="radio" name="gender" id="female" value="gender" >
+</div>
+    <div>
+    
+</div>
+
+
+    <button><a href="" id="btn">Submit</a></button>
+
+</div>
+
+<script>
+
+    $('#fname,#lname,#email,#ht').focus(function(){
+        $(this).css({ 'color':'black','background-color':'lightgreen'})
+    });
+
+    $('#fname,#lname,#email,#ht').blur(function(){
+        $(this).css({ 'color':'black','background-color':''})
+    });
+    
+    $('#fname,#lname,#email,#ht').select(function(){
+        $(this).css({ 'color':'green','background-color':'rgb(90, 204, 90)'})
+    });
+    
+    $('#country').change(function(){
+        $(this).css({ 'color':'brown','background-color':'rgb(90, 204, 90)'})
+    });
+
+
+    $(document).ready(function(){
+            $('#male').click(function(){
+                $('#gender1').css({
+                    'color':'black','transition': '0.3s'
+                })
+            });
+        });
+
+        
+    $(document).ready(function(){
+            $('#female').click(function(){
+                $('#gender2').css({
+                    'color':'black',
+                })
+            });
+        });
+
+
+    $(document).ready(function(){
+            $('#male').blur(function(){
+                $('#gender1').css({
+                    'color':' rgb(31, 31, 31)','transition': '0.3s'
+                })
+            });
+        });
+
+
+    $(document).ready(function(){
+            $('#female').blur(function(){
+                $('#gender2').css({
+                    'color':'rgb(31, 31, 31)','transition': '0.3s'
+                })
+            });
+        });
+
+
+</script>
+</body>
+</html>
